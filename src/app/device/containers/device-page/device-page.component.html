@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12">
+      <app-gateway-item-details [gateway]="gateway$ | async"></app-gateway-item-details>
+    </div>
+    <div class="col-12 mt-4">
+      <app-device-list
+      [devices]="devices$ | async"
+      (removeDevice)="removeDevice($event)"
+      (openForm)="openDeviceModalForm($event)"></app-device-list>
+    </div>
+  </div>
+</div>

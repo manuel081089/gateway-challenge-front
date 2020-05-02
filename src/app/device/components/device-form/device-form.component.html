@@ -1,0 +1,69 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="deviceForm">
+    <div class="form-group">
+      <label for="uid">UID</label>
+      <input
+      type="number"
+      min="0"
+      step="1"
+      class="form-control"
+      id="uid"
+      placeholder="Enter UID number"
+      formControlName="uid"
+      [ngClass]="uidFormControl.value != null && (uidFormControl.dirty || uidFormControl.touched) ? 'is-valid' : ''">
+      <div *ngIf="uidFormControl.errors">
+        <small *ngIf="uidFormControl.value==null && (uidFormControl.dirty || uidFormControl.touched)" class="text-danger">UID Number is required</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="vendor">Vendor</label>
+      <input
+      type="text"
+      class="form-control"
+      id="vendor"
+      placeholder="Enter vendor"
+      formControlName="vendor"
+      [ngClass]="vendorFormControl.value != null && (vendorFormControl.dirty || vendorFormControl.touched) ? 'is-valid' : ''">
+      <div *ngIf="vendorFormControl.errors">
+        <small *ngIf="vendorFormControl.value==null && (vendorFormControl.dirty || vendorFormControl.touched)" class="text-danger">Vendor is required</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="date_created">Date created</label>
+      <input
+      type="date"
+      class="form-control"
+      id="date_created"
+      placeholder="Enter date created"
+      formControlName="date_created"
+      [ngClass]="dateCreatedFormControl.value != null && (dateCreatedFormControl.dirty || dateCreatedFormControl.touched) ? 'is-valid' : ''">
+      <div *ngIf="dateCreatedFormControl.errors">
+        <small *ngIf="dateCreatedFormControl.value==null && (dateCreatedFormControl.dirty || dateCreatedFormControl.touched)" class="text-danger">Date Created is required</small>
+      </div>
+    </div>
+    <div class="form-group row container">
+      <label class="mr-2 mt-2">Status:</label>
+      <label class="toggle-switch">
+        <input type="checkbox" formControlName="status_bool">
+        <div class="slider"></div>
+      </label>
+      <label [ngClass]="statusBoolFormControl.value ? 'text-success' : 'text-danger'" class="ml-2 mt-2">{{statusBoolFormControl.value ? 'Online' : 'Offline'}}</label>
+    </div>
+
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="row">
+    <button
+    type="submit"
+    [disabled]="!deviceForm.valid"
+    (click)="sendData()"
+    class="btn btn-primary">{{isEdit ? 'Edit' : 'Create'}}</button>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.toggle-switch {
+  height: 36px;
+  width: 62px;
+  display: inline-block;
+  position: relative;
+}
+.toggle-switch input {
+  display: none;
+}
+.toggle-switch input:checked + .slider {
+  background-color: rgb(21, 214, 31);
+}
+.toggle-switch input:checked + .slider::after {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.toggle-switch .slider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(172, 15, 15);
+  transition: 0.5s;
+}
+.toggle-switch .slider::after {
+  position: absolute;
+  content: '';
+  height: 28px;
+  width: 28px;
+  background-color: white;
+  left: 4px;
+  bottom: 4px;
+  transition: 0.5s;
+}

@@ -1,0 +1,62 @@
+<div class="container">
+  <form [formGroup]="gatewayForm">
+    <div class="form-group">
+      <label for="gatewayName">Name</label>
+      <input
+      type="text"
+      class="form-control"
+      id="gatewayName"
+      placeholder="Enter gateway name"
+      formControlName="name"
+      [ngClass]="nameFormControl.valid && (nameFormControl.dirty || nameFormControl.touched) ? 'is-valid' : ''">
+      <div *ngIf="nameFormControl.errors">
+        <small *ngIf="nameFormControl.errors.required && (nameFormControl.dirty || nameFormControl.touched)" class="text-danger">Name is required</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="ip_address">IP Address</label>
+      <input
+      type="text"
+      class="form-control"
+      id="ip_address"
+      placeholder="Enter IP Address"
+      minlength="7"
+      maxlength="15"
+      size="15"
+      pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"
+      formControlName="address_ip"
+      [ngClass]="(addressIpFormControl.valid && addressIpFormControl.value!='' && (addressIpFormControl.dirty || addressIpFormControl.touched)) ? 'is-valid' : ''">
+      <div *ngIf="addressIpFormControl.errors">
+        <small *ngIf="addressIpFormControl.errors.required && (addressIpFormControl.dirty || addressIpFormControl.touched)" class="text-danger">Address IP is required</small>
+        <small *ngIf="addressIpFormControl.errors.pattern && (addressIpFormControl.dirty || addressIpFormControl.touched)" class="text-danger">Address IP invalid format</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="serial_number">Serial Number</label>
+      <input
+      type="number"
+      min="0"
+      step="1"
+      class="form-control"
+      id="serial_number"
+      placeholder="Enter serial number"
+      formControlName="serial_number"
+      [ngClass]="serialNumberFormControl.value != null && (serialNumberFormControl.dirty || serialNumberFormControl.touched) ? 'is-valid' : ''">
+      <div *ngIf="serialNumberFormControl.errors">
+        <small *ngIf="serialNumberFormControl.value==null && (serialNumberFormControl.dirty || serialNumberFormControl.touched)" class="text-danger">Serial Number is required</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button
+      type="submit"
+      [disabled]="gatewayForm.invalid"
+      (click)="sendData(gatewayForm, $event)"
+      class="btn btn-primary">
+      <fa-icon *ngIf="isEdit" [icon]="faEdit" class="mr-2"></fa-icon>
+      <fa-icon *ngIf="!isEdit" [icon]="faPlus" class="mr-2"></fa-icon>
+      {{isEdit ? 'Edit' : 'Create'}}</button>
+    </div>
+
+  </form>
+</div>

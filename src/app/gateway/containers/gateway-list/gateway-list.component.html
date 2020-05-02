@@ -1,0 +1,41 @@
+
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title ml-1 mb-0">Gateway list</h4>
+  </div>
+  <div *ngIf="gateways" class="card-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col" sortable="name">Name</th>
+        <th scope="col" sortable="address_ip">IP Address</th>
+        <th scope="col" sortable="serial_number">Serial Number</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let gateway of gatewaysPagination">
+        <th scope="row">{{ gateway.name }}</th>
+        <td>{{ gateway.address_ip }}</td>
+        <td>{{ gateway.serial_number }}</td>
+        <td>
+          <button class="btn btn-light m-1" (click)="details(gateway)"><fa-icon [icon]="faList"></fa-icon></button>
+          <button class="btn btn-warning m-1" (click)="edit(gateway)"><fa-icon [icon]="faEdit"></fa-icon></button>
+          <button class="btn btn-danger m-1" (click)="openModal(gateway)"><fa-icon [icon]="faTrash"></fa-icon></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,27 @@
+<section *ngIf="gateway">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-7">
+              <h4 class="card-title m-1">Gateway:<strong>{{gateway.name}}</strong></h4>
+            </div>
+            <div class="col-5">
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-outline-info" [routerLink]="['/']" routerLinkActive="router-link-active" >
+                  <fa-icon [icon]="faArrowLeft" class="mr-2"></fa-icon>
+                  Back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5>IP Address:<span class="badge badge-secondary m-1">{{gateway.address_ip}}</span></h5>
+          <h5>Serial Number:<span class="badge badge-secondary m-1">{{gateway.serial_number}}</span></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

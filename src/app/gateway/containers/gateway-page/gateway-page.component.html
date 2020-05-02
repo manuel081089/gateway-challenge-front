@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-4">
+      <app-gateway-item
+      [gateway]="selectedGateway"
+      (createGateway)="createGateway($event)"
+      (updateGateway)="updateGateway($event)">
+    </app-gateway-item>
+    </div>
+    <div class="col-8">
+      <app-gateway-list
+      (removeGetway)="removeGetway($event)"
+      (editGetway)="editGetway($event)"
+      [gateways]="gateways$ | async"></app-gateway-list>
+    </div>
+  </div>
+</div>
